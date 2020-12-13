@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane alignment="CENTER" hgap="5.0" prefHeight="250.0" prefWidth="500.0" style="-fx-background-color: #455A64;" vgap="5.0" xmlns="http://javafx.com/javafx/12.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sheykh.AdvanceSearchController">
+   <children>
+      <JFXTextField fx:id="prefixSearch" alignment="CENTER" focusColor="#00897b" promptText="Prefix" style="-fx-background-color: #78909C;" unFocusColor="WHITE" GridPane.columnIndex="1" />
+      <JFXTextField fx:id="suffixSearch" alignment="CENTER" focusColor="#00897b" promptText="Suffix" style="-fx-background-color: #78909C;" unFocusColor="WHITE" GridPane.columnIndex="3" />
+      <JFXTextField fx:id="middleSearch" alignment="CENTER" focusColor="#00897b" promptText="Middle" style="-fx-background-color: #78909C;" unFocusColor="WHITE" GridPane.columnIndex="2" />
+      <JFXToggleButton fx:id="concatToggle" prefHeight="58.0" prefWidth="135.0" text="Concat" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+      <JFXButton fx:id="searchButton" buttonType="RAISED" minHeight="-Infinity" onAction="#searchButton" prefHeight="25.0" prefWidth="131.0" style="-fx-background-color: #009688;" text="Search" textFill="#f2f2f2" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
+   </children>
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+</GridPane>

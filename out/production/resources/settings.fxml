@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXSlider?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.control.DialogPane?>
+<DialogPane style="-fx-background-color: #455A64;" xmlns="http://javafx.com/javafx/12.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sheykh.Settings">
+    <content>
+        <GridPane alignment="CENTER" hgap="10.0" prefHeight="308.0" prefWidth="526.0" style="-fx-background-color: #455A64;" vgap="10.0" >
+            <columnConstraints>
+                <ColumnConstraints />
+                <ColumnConstraints />
+                <ColumnConstraints />
+                <ColumnConstraints />
+                <ColumnConstraints />
+                <ColumnConstraints />
+                <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+            </rowConstraints>
+            <children>
+                <JFXComboBox fx:id="fontFamily" focusColor="#2dd4d7" labelFloat="true" prefWidth="140.0" promptText="Fonts" unFocusColor="#609a94" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                <Label text="Font Family" textFill="WHITE" GridPane.rowIndex="2" />
+                <Label text="Font Size" textFill="WHITE" GridPane.rowIndex="4" />
+                <JFXSlider fx:id="fontSize" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="140.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            </children>
+        </GridPane>
+    </content>
+</DialogPane>
