@@ -109,10 +109,10 @@ public class Controller {
                             setGraphic(null);
                         } else if (Files.isRegularFile(item)) {
                             setText(item.getFileName().toString());
-                            setGraphic(new ImageView(new Image(getClass().getResourceAsStream(FXRun.pathPreFix +File.separator + "resources" + File.separator + "file.png"))));
+                            setGraphic(new ImageView(new Image(getClass().getResourceAsStream(FXRun.pathPreFix + File.separator + "resources" + File.separator + "file.png"))));
                         } else {
                             setText(item.getFileName().toString());
-                            setGraphic(new ImageView(new Image(getClass().getResourceAsStream(FXRun.pathPreFix +File.separator + "resources" + File.separator + "folder.png"))));
+                            setGraphic(new ImageView(new Image(getClass().getResourceAsStream(FXRun.pathPreFix + File.separator + "resources" + File.separator + "folder.png"))));
                         }
                         //***********************************
                         //***********************************
@@ -487,7 +487,10 @@ public class Controller {
                     }
                     console = p.getInputStream();
                     readOutput(console);
-                } catch (IOException e) {
+
+                    Thread.sleep(200);
+                    console.close();
+                } catch (IOException | InterruptedException e) {
                     e.printStackTrace();
                 }
             });
@@ -514,42 +517,48 @@ public class Controller {
     }
 
     private Process msWindowsProcess(Path file) throws IOException {
-        return  Runtime.getRuntime().exec(" java -jar sinac.jar " + file.toString());
+        return Runtime.getRuntime().exec(" java -jar sinac.jar " + file.toString());
     }
 
     private void readOutput(InputStream stdout) {
-        BufferedReader br = new BufferedReader(new InputStreamReader(stdout));
-        String line = "";
-        while (true) {
-            try {
-                if ((line = br.readLine()) == null) break;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            if (line.startsWith("Error")) {
-                String finalLine1 = line;
-                new Thread(() -> {
-                    Platform.runLater(() -> {
-                        HBox box = new HBox();
-                        Text text = new Text(finalLine1);
-                        text.setStyle("-fx-fill: red;");
-                        box.getChildren().add(text);
-                        consoleContent.getChildren().add(box);
-                    });
-                }).start();
-            } else {
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(stdout));
+            String line = "";
+            while (true) {
+                try {
+                    if ((line = br.readLine()) == null) break;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                if (line.startsWith("Error")) {
+                    String finalLine1 = line;
+                    new Thread(() -> {
+                        Platform.runLater(() -> {
+                            HBox box = new HBox();
+                            Text text = new Text(finalLine1);
+                            text.setStyle("-fx-fill: red;");
+                            box.getChildren().add(text);
+                            consoleContent.getChildren().add(box);
+                        });
+                    }).start();
+                } else {
 //                System.out.println(line);
-                String finalLine = line;
-                new Thread(() -> {
-                    Platform.runLater(() -> {
-                        HBox box = new HBox();
-                        Text text = new Text(finalLine);
-                        text.setStyle("-fx-fill: grey;");
-                        box.getChildren().add(text);
-                        consoleContent.getChildren().add(box);
-                    });
-                }).start();
+                    String finalLine = line;
+                    new Thread(() -> {
+                        Platform.runLater(() -> {
+                            HBox box = new HBox();
+                            Text text = new Text(finalLine);
+                            text.setStyle("-fx-fill: grey;");
+                            box.getChildren().add(text);
+                            consoleContent.getChildren().add(box);
+                        });
+                    }).start();
+                }
             }
+
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
