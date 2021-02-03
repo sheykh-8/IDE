@@ -1,19 +1,12 @@
 package sheykh;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.utils.JFXHighlighter;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
@@ -22,14 +15,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import javafx.util.Callback;
 import org.fxmisc.flowless.VirtualizedScrollPane;
 import org.fxmisc.richtext.CodeArea;
@@ -119,10 +109,10 @@ public class Controller {
                             setGraphic(null);
                         } else if (Files.isRegularFile(item)) {
                             setText(item.getFileName().toString());
-                            setGraphic(new ImageView(new Image(getClass().getResourceAsStream(File.separator + "resources" + File.separator + "file.png"))));
+                            setGraphic(new ImageView(new Image(getClass().getResourceAsStream(FXRun.pathPreFix +File.separator + "resources" + File.separator + "file.png"))));
                         } else {
                             setText(item.getFileName().toString());
-                            setGraphic(new ImageView(new Image(getClass().getResourceAsStream(File.separator + "resources" + File.separator + "folder.png"))));
+                            setGraphic(new ImageView(new Image(getClass().getResourceAsStream(FXRun.pathPreFix +File.separator + "resources" + File.separator + "folder.png"))));
                         }
                         //***********************************
                         //***********************************
@@ -405,7 +395,6 @@ public class Controller {
     }
 
 
-
     @FXML
     private void newFile() {
         Tab newTab = new Tab();
@@ -523,9 +512,8 @@ public class Controller {
         return Runtime.getRuntime().exec("java -jar sinac.jar " + file.toString());
     }
 
-    private Process msWindowsProcess(Path file) {
-        //TODO: write this method for compiling on windows.
-        return null;
+    private Process msWindowsProcess(Path file) throws IOException {
+        return  Runtime.getRuntime().exec(" java -jar sinac.jar " + file.toString());
     }
 
     private void readOutput(InputStream stdout) {

@@ -7,20 +7,21 @@ import javafx.scene.Scene;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-import java.io.*;
+import java.io.File;
 
 public class FXRun extends Application {
 
 
     private static Stage stage;
     private static Font font;
+    public static String pathPreFix = !System.getProperty("os.name").equals("Linux") ? ".." : "";
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         Font.loadFont(getClass().getResourceAsStream("/fonts/Ubuntu-Regular.ttf"), 15);
         Font.loadFont(getClass().getResourceAsStream("/fonts/Ubuntu-Bold.ttf"), 15);
         stage = primaryStage;
-        Parent root = FXMLLoader.load(getClass().getResource(File.separator + "mainWindow.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource(pathPreFix + File.separator + "mainWindow.fxml"));
         primaryStage.setTitle("Text Editor");
         Scene scene = new Scene(root, 800, 500);
         scene.getStylesheets().add(Controller.class.getResource("/keywords-highlight.css").toExternalForm());
@@ -39,11 +40,11 @@ public class FXRun extends Application {
     }
 
 
-    public static void changeTitle(String str){
+    public static void changeTitle(String str) {
         stage.setTitle(str);
     }
 
-    public static Font getFont(){
+    public static Font getFont() {
         return font;
     }
 }
