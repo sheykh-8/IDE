@@ -5,3 +5,16 @@
 .button {
     -fx-font-family: "Ubuntu Bold";
 }
+
+.top-bar {
+    -fx-padding: 5px;
+}
+
+.tab-pane>*.tab-header-area>*.tab-header-background
+{
+   -fx-background-color: -fx-outer-border, -fx-text-box-border, #f4f4f4;
+   -fx-border-color: #f4f4f4;
+}
+.tab-pane {
+    -fx-broder-color: white;
+}

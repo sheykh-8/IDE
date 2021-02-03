@@ -19,12 +19,9 @@ javafx {
 dependencies {
     compile files('language.jar')
     compile 'com.jfoenix:jfoenix:9.0.8'
+    compile group: 'org.fxmisc.richtext', name: 'richtextfx', version: '0.10.5'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
-}
-
-test {
-    useJUnitPlatform()
 }
 
 compileJava.options.encoding = 'UTF-8'

@@ -22,8 +22,12 @@ public class FXRun extends Application {
         stage = primaryStage;
         Parent root = FXMLLoader.load(getClass().getResource(File.separator + "mainWindow.fxml"));
         primaryStage.setTitle("Text Editor");
-        primaryStage.setScene(new Scene(root, 800, 500));
+        Scene scene = new Scene(root, 800, 500);
+        scene.getStylesheets().add(Controller.class.getResource("/keywords-highlight.css").toExternalForm());
+        scene.getStylesheets().add(Controller.class.getResource("/mainWindow.css").toExternalForm());
+        primaryStage.setScene(scene);
         primaryStage.setResizable(true);
+//        primaryStage.setMaximized(true);
         primaryStage.setMinWidth(800);
         primaryStage.setMinHeight(550);
         primaryStage.show();
