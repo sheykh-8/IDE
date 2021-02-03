@@ -360,6 +360,7 @@ public class Controller {
                 str.append("\n");
             }
             return str.toString();
+
         } catch (IOException e) {
             System.out.println("Coulden't open the file: " + e.getMessage());
             return "";
